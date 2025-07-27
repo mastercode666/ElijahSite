@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Welcome |Elijahd{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero-section py-5 text-white" style="background: linear-gradient(to right, #49a1b7, #444147); min-height: 80vh;">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Text Content -->
+            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0 animate__animated animate__fadeInLeft">
+                <h1 class="display-4 fw-bold">Welcome to <br><span style="color: #fdd835;">Prof. Elijahd's Platform</span></h1>
+                <p class="lead mt-3">Explore powerful books, impactful teachings, and transformative videos from a passionate servant of God.</p>
+                <div class="mt-4">
+                    <a href="{% url 'books' %}" class="btn btn-light btn-lg me-2 shadow-sm">Explore Books</a>
+                    <a href="{% url 'videos' %}" class="btn btn-outline-light btn-lg shadow-sm">Watch Videos</a>
+                </div>
+            </div>
+
+            <!-- Hero Image -->
+            <div class="col-lg-6 text-center animate__animated animate__fadeInRight">
+                <img src="{% static 'img/dav9.jpg' %}" alt="Hero Banner" class="img-fluid rounded shadow-lg" style="max-height: 400px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SECTION BELOW HERO (optional) -->
+<section class="py-5 bg-light text-center" style="background: linear-gradient(to right, #49a1b7, #ffffff); min-height: 40vh;">
+    <div class="container">
+        <h2 class="mb-4 fw-bold">"Equipping the Saints for the Work of Ministry"</h2>
+        <p class="lead text-muted">Every message, book, and video is designed to empower you spiritually, mentally, and purposefully.</p>
+    </div>
+</section>
+
+
+    <!-- Articles Section -->
+    <section class="my-5 px-3">
+        <div class="container">
+            {% for article in articles %}
+            <div class="card mb-4 shadow-sm" data-aos="fade-up">
+                <div class="card-header bg-success text-white text-center">
+                    📜 Daily Article
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title fst-italic">“{{ article.title }}”</h5>
+                    <p class="card-text text-muted">{{ article.content|truncatewords:40 }}</p>
+                </div>
+                <div class="card-footer text-center small text-muted">
+                    Posted by <strong>{{ article.author }}</strong> on <cite>{{ article.published_date }}</cite>
+                </div>
+                
+            </div>
+            {% empty %}
+            <div class="text-center text-muted">No articles posted yet.</div>
+            {% endfor %}
+        </div>
+    </section>
+
+    
+    <!-- Portfolio Carousel -->
+    <section id="portfolio" class="py-5 px-3">
+        <div class="text-center mb-4">
+            <h1 class="h3 fw-bold text-dark">Vitabu...</h1>
+            <h2 class="h5">Spiritual Growth!</h2>
+            <p class="text-muted">"Nafasi ya Mungu ni muhimu sana katika maisha yetu ya kila siku."</p>
+        </div>
+        <div class="container d-flex overflow-auto gap-3">
+            <img src="{% static 'img/dav 1.jpg' %}" class="img-thumbnail" alt="Slide 1" style="height: 12rem;">
+            <img src="{% static 'img/dav 2.jpg' %}" class="img-thumbnail" alt="Slide 2" style="height: 12rem;">
+            <img src="{% static 'img/dav 3.jpg' %}" class="img-thumbnail" alt="Slide 3" style="height: 12rem;">
+            <img src="{% static 'img/dav 4.jpg' %}" class="img-thumbnail" alt="Slide 4" style="height: 12rem;">
+        </div>
+    </section>
+
+
+    <!-- Blog Section -->
+<section id="blog" class="py-5 bg-white" style="background: linear-gradient(to right, #49a1b7, #49a1b7); min-height: 80vh;">
+    <div class="container">
+        <h1 class="text-center display-5 mb-5">Blog...</h1>
+
+        <div class="row g-4">
+            <div class="col-md-6 " >
+                <div class="bg-post-1 rounded p-4 shadow d-flex flex-column justify-content-end standartwhimg" style="min-height: 200px ">
+                    <h2 class="h4">Uwezi kushinda bila KUOMBA</h2>
+                    <p>Sala ni lazima itolewe madhabahuni lakini maombi yanaweza kutolewa mahali popote pale...</p>
+                    <p class="small">6 October</p>
+                    <a href="#" class="text-decoration-none">“Maisha ya mwanadamu ni kama service ya magari”</a>
+                    <p>Elijah D.</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="bg-post-2 rounded p-4 shadow d-flex flex-column justify-content-end videoformat" style="min-height: 200px">
+                    <p class="small">9 March</p>
+                    <a href="#" class="h4 text-decoration-none">UNAJUA?</a>
+                    <p>Mtu anaweza kuwa mdhamini kwa mtu mwingine.</p>
+                    <a href="{% url 'books' %}" class="btn btn-success">Read More</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mt-4">
+            <div class="col-md-6">
+                <div class="row g-3">
+                    <div class="col-sm-6 standardformat">
+                        <div class="bg-post-3 p-3 rounded shadow" style="min-height: 150px">
+                            <p class="small">3 March</p>
+                            <a href="#" class="text-decoration-none">Nafasi ya Mungu</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 gallery">
+                        <div class="bg-post-5 p-3 rounded shadow" style="min-height: 150px">
+                            <p class="small">20 March</p>
+                            <a href="#" class="text-decoration-none">VIAPO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row g-3">
+                    <div class="col-sm-8">
+                        <div class="bg-post-4 p-3 rounded shadow" style="min-height: 150px">
+                            <p class="small">23 Feb</p>
+                            <a href="#" class="h6 text-decoration-none">MDHAMINI.</a>
+                            <p>MUNGU anaweza kuwa mdhamini..</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 d-flex align-items-center justify-content-center">
+                        <a href="#" class="text-success text-decoration-none">View all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+ <h1 class="text-center display-5 mb-5">About...</h1>
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Image or Illustration -->
+            <div class="col-lg-6 mb-4 mb-lg-0 text-center">
+                <img src="{% static 'img/ed1.jpg' %}" class="img-fluid rounded shadow-lg" alt="Prof. Elijahd" style="max-height: 400px;">
+            </div>
+
+            <!-- Text Content -->
+            <div class="col-lg-6">
+                <h2 class="text-success fw-bold mb-3 animate__animated animate__fadeInUp">Meet Prof. Elijahd</h2>
+
+                <!-- Typing Animation -->
+                <h5 class="mb-3">
+                    <span class="text-primary" id="typed-text"></span>
+                </h5>
+
+                <p class="lead text-muted">
+                    Prof. Elijahd is a renowned gospel spiritual teacher, anointed preacher of the Word, and a passionate mentor who has transformed countless lives through divine wisdom and practical truth. With a deep calling to illuminate souls and nurture spiritual growth, he serves as a beacon of light in today’s generation.
+                </p>
+
+                <p class="text-secondary">
+                    From powerful sermons to insightful books and videos, his teachings focus on holiness, faith, purpose, healing, and the prophetic. Through this platform, he continues to equip the saints, awaken destinies, and raise spiritual champions across nations.
+                </p>
+
+                <a href="{% url 'contact' %}" class="btn btn-outline-success mt-3">Connect with Elijahd</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Typed.js Initialization -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    new Typed('#typed-text', {
+        strings: [
+            "Gospel Spiritual Teacher.",
+            "Anointed Preacher of the Word.",
+            "Prophetic Voice to the Nations.",
+            "Mentor to the Next Generation.",
+            "Builder of Faith and Purpose."
+        ],
+        typeSpeed: 50,
+        backSpeed: 30,
+        backDelay: 2000,
+        loop: true
+    });
+});
+</script>
+
+
+{% endblock %}
