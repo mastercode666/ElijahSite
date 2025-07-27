@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+import dj_database_url
 import os
 from pathlib import Path
 
@@ -20,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-3alz8leb#l_yv_o&+&n1^%^!twkg)n&ny6+f%*gz@mm0f7nb#k"
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split("")
 
 
 # Application definition
@@ -84,6 +85,8 @@ DATABASES = {
     }
 }
 
+DATABASES["default"] = dj_database_url.parse("postgresql://bookstore_db_j9fe_user:yHvYPxxonVy3vIPn2lscU6M5pMXYpfOT@dpg-d22r3se3jp1c73979kmg-a.oregon-postgres.render.com/bookstore_db_j9fe")
+#postgresql://bookstore_db_j9fe_user:yHvYPxxonVy3vIPn2lscU6M5pMXYpfOT@dpg-d22r3se3jp1c73979kmg-a.oregon-postgres.render.com/bookstore_db_j9fe
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
